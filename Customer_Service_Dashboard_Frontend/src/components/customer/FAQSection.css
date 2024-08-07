@@ -1,0 +1,71 @@
+/* FAQSection.css */
+.faq-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-width: 600px; /* Limit the width on larger screens */
+  margin: auto; /* Center the form on the page */
+  background: rgba(247, 245, 245, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  height:85vh;
+  }
+
+  .faq-question, .faq-answer{
+    background: rgba(247, 245, 245, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color:black;
+  }
+  
+  .faq-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .domain-dropdown {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  
+  .domain-dropdown select {
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .faq-item {
+    /* width: calc(50% - 10px); */
+    margin-bottom: 5px;
+  }
+  
+  .faq-question {
+    background-color: #f0f0f0;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .faq-answer {
+    background-color: #fafafa;
+    padding: 10px;
+  }
+  
+  .faq-question button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    font-size: 20px;
+  }
+  

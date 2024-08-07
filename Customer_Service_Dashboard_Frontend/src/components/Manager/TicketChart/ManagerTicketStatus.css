@@ -1,0 +1,15 @@
+.ticketChart {
+    width: 1200px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    align-items: center;
+  }
+
+  .ticket-chart-container {
+    width: 28% !important;
+    margin: 0 20px;
+    min-height: 300px;  
+}
+

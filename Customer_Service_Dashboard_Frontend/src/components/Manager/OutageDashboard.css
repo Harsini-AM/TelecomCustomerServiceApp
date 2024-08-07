@@ -1,0 +1,54 @@
+.outage-dashboard {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 700px;
+    color: white;
+    width: 1200px;
+}
+
+.outage-details, .outage-map {
+    flex: 1;
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 2px 4px rgb(26, 95, 92),  2px 4px rgb(74, 198, 192),  2px 4px rgb(47, 167, 161);
+    border-radius: 15px;
+    backdrop-filter: blur(10px); 
+    padding: 20px;
+}
+
+.outage-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+   
+}
+
+.outage-table th, .outage-table td {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    text-align: left;
+}
+
+.outage-table th {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.glass-card1 {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 2px 4px rgb(26, 95, 92),  2px 4px rgb(74, 198, 192),  2px 4px rgb(47, 167, 161);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+   
+}
+
+.outage-heading {
+    color: white;
+    text-align: center;
+}
+
+.outage-dashboard h3{
+    font-size: 1.5rem;
+}

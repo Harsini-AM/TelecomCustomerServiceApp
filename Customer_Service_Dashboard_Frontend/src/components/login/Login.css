@@ -1,0 +1,143 @@
+/* Container styling */
+.login-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Left and right container styling */
+.login-left, .login-right {
+  flex: 1;
+  padding: 30px;
+  color: white;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+}
+
+.login-left {
+  text-align: center;
+  animation: slideInLeft 1.5s ease-in-out;
+}
+
+.login-right {
+  max-width: 500px;
+  animation: slideInRight 1.5s ease-in-out;
+}
+
+/* Card styling */
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Typing effect */
+.typing-demo {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(255, 255, 255, 0.75);
+  animation: typing 5s steps(40, end), blink-caret 0.25s step-end 2;
+  font-size: 2rem;
+  color: rgba(72, 209, 204, 0.9);
+  display: inline-block;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: rgba(255, 255, 255, 0.75); }
+}
+
+/* Form styling */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form label styling */
+.login-form label {
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+/* Form input and button styling */
+.login-form input, .login-form button {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #065a64;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form input:focus {
+  border-color: #065a64;
+  box-shadow: 0 0 10px rgba(0, 128, 128, 0.5);
+}
+
+/* Button styling */
+.login-form button {
+  background: linear-gradient(90deg, rgba(0, 128, 128, 0.7), rgba(72, 209, 204, 0.7));
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.login-form button:hover, .login-form button:focus {
+  background: linear-gradient(90deg, rgba(72, 209, 204, 0.7), rgba(0, 128, 128, 0.7));
+  transform: scale(1.05);
+}
+
+/* Signup link styling */
+.signup-link {
+  text-decoration: none;
+  color: #72d1cc;
+  transition: color 0.3s;
+}
+
+.signup-link:hover {
+  color: #40e0d0;
+}
+
+/* Media query for responsive design */
+@media screen and (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .login-left, .login-right {
+    margin: 0;
+    max-width: none;
+    margin-bottom: 20px;
+  }
+}
+
+/* Animation keyframes */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}

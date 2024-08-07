@@ -1,0 +1,22 @@
+.support-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to fit content in smaller screens */
+    justify-content: space-between;
+    padding: 10px;
+    height:75vh;
+  }
+  
+  .faq-section, .query-section {
+    flex-basis: 100%;
+  }
+  
+  @media (min-width: 1000px) {
+    .faq-section, .query-section {
+      flex-basis: calc(45% - 15px); /* Set width for two columns */
+    }
+    
+    .faq-section {
+      margin-right: 15px; /* Add margin between sections */
+    }
+  }
+  

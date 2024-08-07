@@ -1,0 +1,101 @@
+/* ListManagers component styles */
+.manager-table {
+    width: 90%;
+    margin:50px 5%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .manager-table th,
+  .manager-table td {
+    border: 1px solid #fff; 
+    padding: 8px;
+    color: #fff; 
+  }
+  
+  .manager-table th {
+    text-align: center !important;
+    background-color: #135d66; 
+    text-align: left;
+  }
+  
+  .manager-table td {
+    text-align: center;
+    color: rgb(252, 245, 236);
+  }
+  
+  .manager-actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .manager-actions button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #104e56; 
+    color: #e4efeb; 
+    border: none;
+    cursor: pointer;
+  }
+  
+  .manager-actions button:hover {
+    background-color: #f2f2f2; 
+    color: #0e655d; 
+    transition-delay: 0.2s;
+  }
+  
+
+  .manager-actions .btn-delete{
+    background-color: #861212;
+  }
+
+  .list-managers-container {
+    position: relative;
+    padding-bottom: 70px;
+}
+
+.representative-container{
+  position: relative;
+  padding-bottom: 70px;
+}
+
+.my-pagination {
+  margin-top: 20px;
+    position: absolute;
+    bottom: 10px; 
+    right: 50px; 
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+}
+
+.pagination {
+  background-color: black;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.pagination .page-item .page-link {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+  margin: 0 2px;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: gray;
+  color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+  background-color: black;
+  color: #6c757d;
+  border: 1px solid #6c757d;
+}

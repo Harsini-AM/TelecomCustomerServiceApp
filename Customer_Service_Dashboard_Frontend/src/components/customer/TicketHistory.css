@@ -1,0 +1,64 @@
+/* Ticket history container */
+.ticket-history-customer {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* Glass card styling */
+.glass-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Table styles */
+.ticket-table-customer {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticket-table-customer th,
+.ticket-table-customer td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  color: #f5f5f5; /* Smoke white text color */
+}
+
+.ticket-table-customer th {
+  background-color: rgba(0, 128, 128, 0.7); /* Dark cyan background */
+  font-weight: bold;
+}
+
+.ticket-table-customer tr:nth-child(even) {
+  background-color: #1c1e24; /* Dark background */
+}
+
+.ticket-table tr:hover {
+  background-color: #2a2d35; /* Darker background on hover */
+}
+
+/* Keyframes for fadeInUp animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

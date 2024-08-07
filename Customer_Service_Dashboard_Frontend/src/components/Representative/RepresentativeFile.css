@@ -1,0 +1,361 @@
+  .ticketChart {
+    width: 35%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  
+  .error-chart canvas{
+    width: 250px !important;
+  }
+
+  .representative-stats-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   width: 100%;
+  }
+
+  .representative-stats-container .parameter{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+  }
+  
+  .circle {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.3s;
+    padding: 10px 0px !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .response-time{
+    background-color: #11775d;
+  }
+
+  .resolution-time{
+    background-color: #0c5548;
+  }
+  
+  .circle:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .response-time {
+    border: 5px solid #757575;
+  }
+  
+  .resolution-time {
+    border: 5px solid #757575;
+  }
+  
+  .stats {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 50px;
+    gap: 10px;
+    color: #bcb9b9;
+  }
+
+  .stats span{
+    font-size: 1rem;
+  }
+  
+  .stats > span:first-child {
+    font-weight: bold;
+  }
+  
+  .stats > span:last-child {
+    font-size: 1.1em;
+  }
+
+  .rep-ticket-chart{
+    margin: '0 auto';
+    min-height: 300px;  
+}
+
+.rep-chart-ticket canvas{
+  height: 150px !important;
+  width: 150px !important;
+}
+
+
+  /*** harsini style***/
+
+  .ticketChart{
+    flex-direction: column;
+    
+  }
+  .ticketChart .status{
+    display:flex;
+    gap:10px;
+  }
+
+  .ticketChart .status h4{
+    text-align: center;
+    font-size: 1.25rem;
+  }
+
+  .weekly-chart h3{
+    text-align: center;
+    padding: 20px;
+    color: #f0f5f4;
+    text-shadow: 2px 1px 1px;
+    font-size: 1.5rem;
+  }
+
+  
+   /*** final ***/
+   .rep-main-dashboard{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+   }
+
+   .rep-main-dashboard h2{
+    position: relative;
+    text-align: center !important;
+    color: #d3dedb;
+    text-shadow: 2px 1px 1px grey;
+    font-size:2.1rem;
+    padding-bottom: 20px;
+    
+   }
+
+.rep-dashboard{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.dashboard-row {
+    display:flex ;
+    justify-content: space-around;
+    margin-bottom: 30px;
+
+}
+
+
+.performanceChart{
+    width: 25% !important;
+}
+
+.rep-ticketChart{
+    width: 30% !important;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 4px 6px rgb(26, 95, 92),  4px 6px rgb(74, 198, 192),  4px 6px rgb(47, 167, 161);
+    display: flex;
+    height: 370px;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center !important;
+    flex-direction: column;
+    
+  }
+
+  .rep-ticketChart h4{
+    color: rgb(36, 31, 31);
+    text-shadow: 2px 1px 1px grey;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+   .rep-ticketChart canvas{
+    height: 250px !important;
+    width: 250px !important;
+   }
+
+   .error-ticketChart canvas{
+    height: 300px !important;
+    width: 350px;
+   }
+
+   .error-ticketChart{
+    width: 30% !important;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 4px 6px rgb(26, 95, 92),  4px 6px rgb(74, 198, 192),  4px 6px rgb(47, 167, 161);
+    display: flex;
+    height: 370px;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center !important;
+    flex-direction: column;
+   }
+
+   
+  .performanceChart {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+
+    padding: 30px 0;
+    height: 370px;
+    box-shadow: 4px 6px rgb(26, 95, 92),  4px 6px rgb(74, 198, 192),  4px 6px rgb(47, 167, 161);
+  }
+  .performanceChart h3{
+    text-align: center;
+    color: #121312;
+    text-shadow: 2px 1px 1px grey;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .weekly-chart{
+    width: 65% !important;
+    min-width: 300px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 4px 6px rgb(26, 95, 92),  4px 6px rgb(74, 198, 192),  4px 6px rgb(47, 167, 161);
+    border-radius: 15px;
+  }
+
+  .weekly-chart h3{
+    color: rgb(28, 27, 27);
+    text-shadow: 1px 1px 1px grey;
+  }
+
+  .error-ticketChart h4{
+    color: #121312;
+    text-shadow: 1px 1px grey;
+  }
+ .filter-container{
+    padding-top: 50px;
+    padding-left: 30px;
+ }
+
+
+ /*deva*/
+
+ .rep-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#065a64;
+  padding: 10px 20px;
+  color: white;
+}
+ 
+.rep-navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+ 
+.rep-navbar-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+ 
+.rep-profile-circle {
+  width: 40px;
+  height: 40px;
+  background-color: #555;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.rep-main-dashboard{
+  width: 100%;
+  padding: 50px 0px;
+}
+
+.rep-navbar-profile a{
+  color: whitesmoke;
+  font-size: 1.2rem;
+  margin:0px 20px;
+  text-decoration: none;
+}
+
+.rep-navbar-profile a:hover{
+color: #c4edf2;
+transition-delay: 0.2s;
+}
+
+.rep-navbar button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1d767e;
+}
+
+  @media (max-width: 768px) {
+    .dashboard-row{
+        flex-direction: column;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .rep-navbar {
+        flex-direction: column;
+        height: 50vh !important;
+        background-color: #065a64 ;
+    }
+    .rep-navbar-profile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+       
+    }
+
+    .rep-items {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rep-navbar-profile a {
+        margin: 10px 0;
+    }
+
+    .dashboard-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .performanceChart, .rep-ticketChart, .error-ticketChart, .weekly-chart {
+        width: 90% !important;
+        margin: 10px auto;
+    }
+}
+
+.ticket-label{
+  color: white;
+}
+
+@media (max-width: 480px) {
+    .rep-navbar-brand {
+        font-size: 20px;
+    }
+
+    .rep-navbar-profile a {
+        font-size: 1rem;
+    }
+
+    .performanceChart h3, .rep-ticketChart h4, .weekly-chart h3 {
+        font-size: 1.2rem;
+    }
+}
+

@@ -1,0 +1,39 @@
+.rep-details-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .rep-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%; /* Adjust the width as needed */
+    max-width: 1200px; /* Optional: Add a max-width to limit the width */
+  }
+  
+  .rep-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .rep-table th,
+  .rep-table td {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  
+  .rep-table th {
+    background-color: #135d66;
+  }
+  
+  .rep-table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .rep-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  

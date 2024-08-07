@@ -1,0 +1,157 @@
+/* Manager.css */
+
+.manager-details {
+  width: 80%;
+  margin:10%;
+    display: flex;
+    height: 60vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f1f1f !important; 
+    color: #ffffff; 
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  }
+
+  .manager-container{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .manager-container h2{
+   
+    color: #fefdfd;
+    font-size: 2rem;
+  }
+
+  .manager-section h3, .manager-section h4{
+    color: #12807c;
+    
+  }
+  
+  .manager-details h3 {
+    margin-bottom: 15px;
+  }
+  
+  .manager-details h4 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  .btn-update,
+  .btn-delete {
+    background-color: #0f5450; /* Blue button color */
+    color: #ffffff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-update:hover,
+  .btn-delete:hover {
+    background-color: #146e7a; /* Darker blue on hover */
+  }
+  
+  .modal-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the modal */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content {
+    background-color: #1f1f1f; /* Dark gray modal background */
+    color: #ffffff; /* White text color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+  }
+  
+  .modal-content h3 {
+    margin-bottom: 15px;
+  }
+  
+  .modal-content p {
+    margin-bottom: 10px;
+  }
+  
+  .modal-btns {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .modal-btns button {
+    background-color: #12807c; /* Blue button color */
+    color: #ffffff; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-btns button:last-child {
+    margin-left: 0;
+  }
+  
+  .modal-btns button:hover {
+    background-color: #0d7583; /* Darker blue on hover */
+  }
+
+  .manager-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px auto;
+    max-width: 800px;
+  }
+  
+  .basic-details,
+  .company-details {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .basic-details h3,
+  .company-details h3 {
+    margin-bottom: 10px;
+  }
+  
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .btn-container button {
+    margin: 0 10px;
+  }
+  
+
+  .manager-details .detail {
+      display: flex;
+      gap: 10px;
+      height:50px;
+      align-items: center;
+  }
+
+  .detail span{
+    margin-bottom: 7px !important;
+  }
+
+  .glass-card h4{
+    text-align: center;
+  }

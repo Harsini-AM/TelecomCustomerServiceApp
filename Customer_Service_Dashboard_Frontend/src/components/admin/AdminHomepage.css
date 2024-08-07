@@ -1,0 +1,69 @@
+
+
+.admin-container {
+  padding: 20px;
+}
+
+.admin-container .card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+
+.admin-container .card:hover {
+  transform: translateY(-10px);
+}
+
+
+.admin-container .glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.admin-container .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+
+.admin-container .chart-canvas {
+  width: 100% !important;
+  height: 400px !important;
+}
+
+
+.admin-container .pie-chart-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+  }
+  to {
+      opacity: 1;
+      transform: none;
+  }
+}
+
+
+
+
+.admin-container .row {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+
+.admin-container .card-body {
+  animation: pulse 2s infinite;
+}

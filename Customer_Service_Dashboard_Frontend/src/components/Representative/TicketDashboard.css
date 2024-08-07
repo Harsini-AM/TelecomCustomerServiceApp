@@ -1,0 +1,84 @@
+/* Ticket history container */
+.ticket-table-history {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  /* Glass card styling */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .glass-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Table styles */
+  .ticket-table-history {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .ticket-table-history th,
+  .ticket-table-history td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    color: #f5f5f5; /* Smoke white text color */
+  }
+  
+  .ticket-table-history th {
+    background-color: rgba(0, 128, 128, 0.7); /* Dark cyan background */
+    font-weight: bold;
+  }
+  
+  .ticket-table-history tr:nth-child(even) {
+    background-color: #1c1e24; /* Dark background */
+  }
+  
+  .ticket-table tr:hover {
+    background-color: #2a2d35; /* Darker background on hover */
+  }
+
+  .filter-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px;
+    width: 15%; /* Ensure it takes up the full width */
+}
+
+.filter-container label{
+  color: #ccc;
+}
+.filter-container select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333; /* Optional: Customize the background color */
+    color: #f5f5f5; /* Optional: Customize the text color */
+}
+  
+  /* Keyframes for fadeInUp animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  

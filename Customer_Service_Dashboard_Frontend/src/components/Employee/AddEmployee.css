@@ -1,0 +1,137 @@
+.form-container {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: rgba(50, 50, 50, 0.8); /* Semi-transparent dark background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding-bottom: 50px;
+}
+
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container div {
+    margin-bottom: 15px;
+}
+
+.form-container p {
+    margin: 0 0 5px;
+}
+
+.required {
+    color: red;
+}
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 0.9em;
+}
+
+.form-container input[type='text'],
+.form-container input[type='email'],
+.form-container input[type='password'],
+.form-container select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #cec9c9;
+    color: #191818;
+}
+
+.phone-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.country-code {
+    padding: 10px;
+    background-color: #444;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.phone-input-container input[type='text'] {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+.add-btn {
+    display: block;
+    width: 50%;
+    margin: 20px auto; 
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #327f63; 
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.add-btn:hover {
+    background-color: #28654d;
+}
+
+.back-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #327f63; 
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #28654d;
+}
+
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-employee{
+    margin-top: 50px;
+}
+
+.manager-domain option{
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+}
+
+input.read-only {
+    background-color: #0e0e0e !important;
+    color: #f4eeee !important;
+    border-color: #ddd;
+    cursor: not-allowed;
+}
+@media (max-width: 600px) {
+    .add-btn,
+    .back-btn {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+.error-message{
+    color: red !important;
+    text-shadow: none;
+}

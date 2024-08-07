@@ -1,0 +1,143 @@
+/* SignUp.css */
+
+/* Container styling */
+.signup-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Left and right container styling */
+.signup-left, .signup-right {
+  flex: 1;
+  padding: 30px;
+  color: white;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.signup-left {
+  text-align: center;
+}
+
+.signup-right {
+  max-width: 500px;
+  animation: slideInRight 1s ease-in-out;
+}
+
+/* Card styling */
+.signup-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.signup-form:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Form styling */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form label styling */
+.signup-form label {
+  margin-bottom: 2px;
+  color: #fff;
+}
+
+/* Form input and button styling */
+.signup-form input, .signup-form button, .signup-form select {
+  padding: 10px;
+  margin-bottom: 2px;
+  border: 1px solid #065a64;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.signup-form input:focus, .signup-form select:focus {
+  border-color: #065a64;
+  box-shadow: 0 0 10px rgba(0, 128, 128, 0.5);
+}
+
+/* Button styling */
+.signup-form button {
+  background: linear-gradient(90deg, rgba(0, 128, 128, 0.7), rgba(72, 209, 204, 0.7));
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  margin-top: 5px;
+}
+
+.signup-form button:hover, .signup-form button:focus {
+  background: linear-gradient(90deg, rgba(72, 209, 204, 0.7), rgba(0, 128, 128, 0.7));
+  transform: scale(1.05);
+}
+
+/* Error message styling */
+.signup-error {
+  color: #ff0000 !important;
+  text-shadow: none;
+}
+
+/* Typing effect */
+.typing-demo {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid rgba(255, 255, 255, 0.75);
+  animation: typing 5s steps(40, end), blink-caret 0.25s step-end 2;
+  font-size: 2rem;
+  color: rgba(72, 209, 204, 0.9);
+  display: inline-block;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: rgba(255, 255, 255, 0.75); }
+}
+
+/* Animation keyframes */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.signup-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.signup-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+

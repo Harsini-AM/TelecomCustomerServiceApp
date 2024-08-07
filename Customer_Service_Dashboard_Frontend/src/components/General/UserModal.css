@@ -1,0 +1,116 @@
+.user-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  z-index:10000;
+}
+
+.user-modal-content {
+  width: 25%;
+  max-height: 100%;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color:white;
+  position: relative;
+  overflow-y: auto; /* Enable vertical scrolling */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input,select,textarea{
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.usermodal-btn{
+  width: calc(100% - 20px);
+  background-color: #065a64;
+  color: white;
+  padding:10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Error message styling */
+.usermodal-error {
+  color: red !important;
+  margin: 10px 0;
+}
+
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .modal-content {
+    width: 40%; /* Adjust width for larger tablets and small desktops */
+    padding: 15px;
+  }
+
+  .usermodal-btn {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 60%; /* Adjust width for tablets */
+    padding: 10px;
+  }
+
+  .close {
+    font-size: 18px;
+  }
+
+  .usermodal-btn{
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 90%; /* Adjust width for mobile devices */
+    padding: 10px;
+  }
+
+  .close {
+    font-size: 16px;
+  }
+
+  label {
+    margin: 5px 0;
+  }
+
+  input {
+    padding: 6px;
+  }
+
+  .usermodal-btn {
+    padding: 8px 12px;
+  }
+}

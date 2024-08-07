@@ -1,0 +1,103 @@
+.query-component {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-width: 600px; /* Limit the width on larger screens */
+    background: rgba(247, 245, 245, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    height:85vh;
+    margin:auto;
+  }
+  
+  .query-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .query-form-group label {
+    font-weight: bold;
+  }
+  
+  .query-form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    height:30vh;
+  }
+  
+  .btn {
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #065a64;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .btn:hover {
+    background-color: #1a5c59;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .text-muted {
+    font-size: 12px;
+    color: #6c757d;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .query-component {
+      padding: 15px;
+    }
+  
+    .query-form-group label {
+      font-size: 14px;
+    }
+  
+    .query-form-control {
+      padding: 8px;
+    }
+  
+    .btn {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .query-component {
+      padding: 10px;
+    }
+  
+    .query-form-group {
+      margin-bottom: 10px;
+    }
+  
+    .query-form-group label {
+      font-size: 12px;
+    }
+  
+    .query-form-control {
+      padding: 6px;
+    }
+  
+    .btn {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
+  

@@ -1,0 +1,8 @@
+.outage-dashboard{
+    padding:20px;
+    width:90%;
+    margin:4%;
+    display: flex;
+    gap:10px;
+}
+
