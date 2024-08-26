@@ -1,5 +1,9 @@
 package com.example.Customer.dao;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -43,6 +47,8 @@ import com.example.Customer.repo.TicketRepo;
 
 @Service
 public class CustomerdaoImpl{
+	
+	private static final Logger logger = LoggerFactory.getLogger(CustomerdaoImpl.class);
 
     @Autowired
     private CustomerRepo customerRepo;
@@ -236,264 +242,6 @@ public class CustomerdaoImpl{
     }
 
 
-
-    
-    //harsini  
-    public List<Ticket> getTicketsByManagerId(Long managerId) {
-        try {
-            return ticketRepo.findByManagerId(managerId);
-        } catch (Exception e) {
-            throw new RuntimeException("Error fetching tickets by manager ID", e);
-        }
-    }
-
-    public double calculateAverageResponseTime(Long managerId) {
-        try {
-        	
-            List<Ticket> tickets = getTicketsByManagerId(managerId);
-            return tickets.stream()
-                          .mapToDouble(Ticket::getResponseTime)
-                          .average()
-                          .orElse(0.0);
-        } catch (Exception e) {
-            throw new RuntimeException("Error calculating average response time", e);
-        }
-    }
-
-    public double getAverageResponseTimeByManagerId(Long managerId) {
-        try {
-            List<Ticket> tickets = getTicketsByManagerId(managerId);
-            //System.out.println(t);
-            return tickets.stream()
-                          .mapToDouble(Ticket::getResponseTime)
-                          .average()
-                          .orElse(0.0);
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting average response time by manager ID", e);
-        }
-    }
-
-    public double getAverageResolutionTimeByManagerId(Long managerId) {
-        try {
-            List<Ticket> tickets = getTicketsByManagerId(managerId);
-            return tickets.stream()
-                          .mapToDouble(Ticket::getResolutionTime)
-                          .average()
-                          .orElse(0.0);
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting average resolution time by manager ID", e);
-        }
-    }
-
-    public Map<Long, Double> calculateTop5RepWiseAverageResponseTime(Long managerId) {
-        try {
-            List<Ticket> tickets = getTicketsByManagerId(managerId);
-            Map<Long, Double> repAvgResponseTime = tickets.stream()
-                    .collect(Collectors.groupingBy(Ticket::getEmpId, Collectors.averagingDouble(Ticket::getResponseTime)));
-            Map<Long,Double> sorted =  repAvgResponseTime.entrySet().stream()
-                    .sorted(Map.Entry.comparingByValue())
-                    .limit(5)
-                    .collect(Collectors.toMap(
-                            Map.Entry::getKey,
-                            Map.Entry::getValue
-                    ));
-            return sorted;
-        } catch (Exception e) {
-            throw new RuntimeException("Error calculating top 5 representative-wise average response time", e);
-        }
-    }
-
-
-		
-    public Map<Long,Double> calculateTop5RepWiseAverageResolutionTime(Long managerId){
-        try {
-            List<Ticket> tickets = getTicketsByManagerId(managerId);
-            
-            // Calculate average resolution time for each representative
-            Map<Long, Double> repAvgResolutionTime = tickets.stream()
-                    .collect(Collectors.groupingBy(Ticket::getEmpId, Collectors.averagingDouble(Ticket::getResolutionTime)));
-            
-            // Sort the representatives by their average resolution time and take the top 5
-            Map<Long,Double> sorted =  repAvgResolutionTime.entrySet().stream()
-                    .sorted(Map.Entry.comparingByValue())
-                    .limit(5)
-                    .collect(Collectors.toMap(
-                            Map.Entry::getKey,
-                            Map.Entry::getValue
-                    ));
-            
-            System.out.println(sorted);
-            return sorted;
-        } catch (Exception e) {
-            // Handle exception or rethrow
-            throw new RuntimeException("Error calculating top 5 representative-wise average resolution time", e);
-        }
-    }
-
-    public Map<String, Long> getTicketCountsByStatus(Long managerId) {
-        try {
-            List<Object[]> results = ticketRepo.countTicketsByStatus(managerId);
-            Map<String, Long> ticketCounts = new HashMap<>();
-
-            for (Object[] result : results) {
-                String status = (String) result[0];
-                Long count = (Long) result[1];
-                ticketCounts.put(status, count);
-            }
-            System.out.println(ticketCounts.size());
-
-            return ticketCounts;
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting ticket counts by status", e);
-        }
-    }
-
-    public double getAverageResponseTimeByRepId(Long repId) {
-        try {
-            Optional<Double> result = ticketRepo.findAverageResponseTimeByRepId(repId);
-            return result.orElse(0.0);
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting average response time by representative ID", e);
-        }
-    }
-
-    public double getAverageResolutionTimeByRepId(Long repId) {
-        try {
-            Optional<Double> result = ticketRepo.findAverageResolutionTimeByRepId(repId);
-            return result.orElse(0.0);
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting average resolution time by representative ID", e);
-        }
-    }
-
-    public List<Ticket> getTicketsByRepId(Long repId) {
-        try {
-            return ticketRepo.findByEmpId(repId);
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting tickets by representative ID", e);
-        }
-    }
-    
-
-		
-		
-		
-		
-    public Map<String, Long> getTicketCountsByStatusForRep(Long repId) {
-        try {
-            List<Object[]> results = ticketRepo.countTicketsByStatusForRep(repId);
-            Map<String, Long> ticketCounts = new HashMap<>();
-
-            for (Object[] result : results) {
-                String status = (String) result[0];
-                Long count = (Long) result[1];
-                ticketCounts.put(status, count);
-            }
-
-            return ticketCounts;
-        } catch (Exception e) {
-            // Log the exception or handle it accordingly
-            throw new RuntimeException("Error getting ticket counts by status for representative: " + e.getMessage(), e);
-        }
-    }
-
-		public Map<String, Float> getAverageResponseTimeByDayOfWeek(Long repId, LocalDate currentDate) {
-		    try {
-		        LocalDateTime startDate = currentDate.atStartOfDay().minusDays(7);
-		        List<Object[]> results = ticketRepo.findResponseTimesForRep(repId, startDate);
-
-		        // Collect response times by day
-		        Map<LocalDate, List<Float>> responseTimesByDay = new HashMap<>();
-		        for (Object[] result : results) {
-		            LocalDate createdAt = ((LocalDateTime) result[0]).toLocalDate();
-		            float responseTime = ((Number) result[1]).floatValue();
-
-		            responseTimesByDay
-		                .computeIfAbsent(createdAt, k -> new ArrayList<>())
-		                .add(responseTime);
-		        }
-		        System.out.println(responseTimesByDay);
-
-		        // Calculate average response times and store in a sorted map
-		        Map<LocalDate, Float> avgResponseTimesByDate = responseTimesByDay.entrySet().stream()
-		            .collect(Collectors.toMap(
-		                Map.Entry::getKey,
-		                entry -> (float) entry.getValue().stream().mapToDouble(Float::floatValue).average().orElse(0.0)
-		            ));
-
-		        // Sort the map by LocalDate
-		        Map<LocalDate, Float> sortedAvgResponseTimesByDate = avgResponseTimesByDate.entrySet().stream()
-		            .sorted(Map.Entry.comparingByKey())
-		            .collect(Collectors.toMap(
-		                Map.Entry::getKey,
-		                Map.Entry::getValue,
-		                (e1, e2) -> e1,
-		                LinkedHashMap::new
-		            ));
-
-		        // Convert sorted map to day-of-week format
-		        Map<String, Float> avgResponseTimesByDayOfWeek = new LinkedHashMap<>();
-		        for (Map.Entry<LocalDate, Float> entry : sortedAvgResponseTimesByDate.entrySet()) {
-		            avgResponseTimesByDayOfWeek.put(entry.getKey().getDayOfWeek().name(), entry.getValue());
-		        }
-
-		        return avgResponseTimesByDayOfWeek;
-		    } catch (Exception e) {
-		        throw new RuntimeException("Error getting average response time by day of week for representative", e);
-		    }
-		}
-
-		public Map<String, Float> getAverageResolutionTimeByDayOfWeek(Long repId, LocalDate currentDate) {
-		    try {
-		        LocalDateTime startDate = currentDate.atStartOfDay().minusDays(7);
-		        List<Object[]> results = ticketRepo.findResolutionTimesForRep(repId, startDate);
-
-		        // Collect resolution times by day
-		        Map<LocalDate, List<Float>> resolutionTimesByDay = new HashMap<>();
-		        for (Object[] result : results) {
-		            LocalDate createdAt = ((LocalDateTime) result[0]).toLocalDate();
-		            float resolutionTime = ((Number) result[1]).floatValue();
-
-		            resolutionTimesByDay
-		                .computeIfAbsent(createdAt, k -> new ArrayList<>())
-		                .add(resolutionTime);
-		        }
-		        System.out.println(resolutionTimesByDay);
-
-		        // Calculate average resolution times
-		        Map<LocalDate, Float> avgResolutionTimesByDate = resolutionTimesByDay.entrySet().stream()
-		            .collect(Collectors.toMap(
-		                Map.Entry::getKey,
-		                entry -> (float) entry.getValue().stream().mapToDouble(Float::floatValue).average().orElse(0.0)
-		            ));
-
-		        // Sort the map by LocalDate
-		        Map<LocalDate, Float> sortedAvgResolutionTimesByDate = avgResolutionTimesByDate.entrySet().stream()
-		            .sorted(Map.Entry.comparingByKey())
-		            .collect(Collectors.toMap(
-		                Map.Entry::getKey,
-		                Map.Entry::getValue,
-		                (e1, e2) -> e1,
-		                LinkedHashMap::new
-		            ));
-
-		        // Convert sorted map to day-of-week format
-		        Map<String, Float> avgResolutionTimesByDayOfWeek = new LinkedHashMap<>();
-		        for (Map.Entry<LocalDate, Float> entry : sortedAvgResolutionTimesByDate.entrySet()) {
-		            avgResolutionTimesByDayOfWeek.put(entry.getKey().getDayOfWeek().name(), entry.getValue());
-		        }
-
-		        return avgResolutionTimesByDayOfWeek;
-		    } catch (Exception e) {
-		        throw new RuntimeException("Error getting average resolution time by day of week for representative", e);
-		    }
-		}
-
-		
-		public long getTicketCount(Long repId) {
-			return ticketRepo.getCountByRepId(repId);
-		}
-		
 		public long getTicketCountOfManager(Long managerId) {
 			return ticketRepo.getCountByManagerId(managerId);
 		}
@@ -505,8 +253,327 @@ public class CustomerdaoImpl{
 		        throw new RuntimeException("Error getting all tickets", e);
 		    }
 		}
-	
-		
+
+    
+    
+		public List<Ticket> getTicketsByManagerId(Long managerId) {
+		    logger.info("Fetching tickets for manager ID: {}", managerId);
+		    try {
+		        List<Ticket> tickets = ticketRepo.findByManagerId(managerId);
+		        logger.info("Successfully fetched {} tickets for manager ID: {}", tickets.size(), managerId);
+		        return tickets;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error fetching tickets by manager ID {}: {}", managerId, e.getMessage());
+		        throw new RuntimeException("Error fetching tickets by manager ID", e);
+		    }
+		}
+
+		public double calculateAverageResponseTime(Long managerId) {
+		    logger.info("Calculating average response time for manager ID: {}", managerId);
+		    try {
+		        List<Ticket> tickets = getTicketsByManagerId(managerId);
+		        double average = tickets.stream()
+		                                .mapToDouble(Ticket::getResponseTime)
+		                                .average()
+		                                .orElse(0.0);
+		        logger.info("Average response time for manager ID: {} is {}", managerId, average);
+		        return average;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error calculating average response time for manager ID {}: {}", managerId, e.getMessage());
+		        throw new RuntimeException("Error calculating average response time", e);
+		    }
+		}
+
+		public double getAverageResponseTimeByManagerId(Long managerId) {
+		    logger.info("Getting average response time for manager ID: {}", managerId);
+		    try {
+		        List<Ticket> tickets = getTicketsByManagerId(managerId);
+		        double average = tickets.stream()
+		                                .mapToDouble(Ticket::getResponseTime)
+		                                .average()
+		                                .orElse(0.0);
+		        logger.info("Average response time for manager ID: {} is {}", managerId, average);
+		        return average;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error getting average response time by manager ID {}: {}", managerId, e.getMessage());
+		        throw new RuntimeException("Error getting average response time by manager ID", e);
+		    }
+		}
+
+		public double getAverageResolutionTimeByManagerId(Long managerId) {
+		    logger.info("Getting average resolution time for manager ID: {}", managerId);
+		    try {
+		        List<Ticket> tickets = getTicketsByManagerId(managerId);
+		        double average = tickets.stream()
+		                                .mapToDouble(Ticket::getResolutionTime)
+		                                .average()
+		                                .orElse(0.0);
+		        logger.info("Average resolution time for manager ID: {} is {}", managerId, average);
+		        return average;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error getting average resolution time by manager ID {}: {}", managerId, e.getMessage());
+		        throw new RuntimeException("Error getting average resolution time by manager ID", e);
+		    }
+		}
+
+		public Map<Long, Double> calculateTop5RepWiseAverageResponseTime(Long managerId) {
+		    logger.info("Calculating top 5 representative-wise average response time for manager ID: {}", managerId);
+		    try {
+		        List<Ticket> tickets = getTicketsByManagerId(managerId);
+		        Map<Long, Double> repAvgResponseTime = tickets.stream()
+		                .collect(Collectors.groupingBy(Ticket::getEmpId, Collectors.averagingDouble(Ticket::getResponseTime)));
+		        
+		        Map<Long, Double> sorted = repAvgResponseTime.entrySet().stream()
+		                .sorted(Map.Entry.comparingByValue())
+		                .limit(5)
+		                .collect(Collectors.toMap(
+		                        Map.Entry::getKey,
+		                        Map.Entry::getValue,
+		                        (e1, e2) -> e1,
+		                        LinkedHashMap::new
+		                ));
+		        
+		        logger.info("Top 5 representative-wise average response time for manager ID: {}: {}", managerId, sorted);
+		        return sorted;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error calculating top 5 representative-wise average response time for manager ID {}: {}", managerId, e.getMessage());
+		        throw new RuntimeException("Error calculating top 5 representative-wise average response time", e);
+		    }
+		}
+
+		public Map<Long, Double> calculateTop5RepWiseAverageResolutionTime(Long managerId) {
+		    logger.info("Calculating top 5 representative-wise average resolution time for manager ID: {}", managerId);
+		    try {
+		        List<Ticket> tickets = getTicketsByManagerId(managerId);
+		        Map<Long, Double> repAvgResolutionTime = tickets.stream()
+		                .collect(Collectors.groupingBy(Ticket::getEmpId, Collectors.averagingDouble(Ticket::getResolutionTime)));
+		        
+		        Map<Long, Double> sorted = repAvgResolutionTime.entrySet().stream()
+		                .sorted(Map.Entry.comparingByValue())
+		                .limit(5)
+		                .collect(Collectors.toMap(
+		                        Map.Entry::getKey,
+		                        Map.Entry::getValue
+		                ));
+		        
+		        logger.info("Top 5 representative-wise average resolution time for manager ID: {}: {}", managerId, sorted);
+		        return sorted;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error calculating top 5 representative-wise average resolution time for manager ID {}: {}", managerId, e.getMessage());
+		        throw new RuntimeException("Error calculating top 5 representative-wise average resolution time", e);
+		    }
+		}
+
+		public Map<String, Long> getTicketCountsByStatus(Long managerId) {
+		    logger.info("Getting ticket counts by status for manager ID: {}", managerId);
+		    try {
+		        List<Object[]> results = ticketRepo.countTicketsByStatus(managerId);
+		        Map<String, Long> ticketCounts = new HashMap<>();
+		        
+		        for (Object[] result : results) {
+		            String status = (String) result[0];
+		            Long count = (Long) result[1];
+		            ticketCounts.put(status, count);
+		        }
+		        
+		        logger.info("Ticket counts by status for manager ID: {}: {}", managerId, ticketCounts);
+		        return ticketCounts;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error getting ticket counts by status for manager ID {}: {}", managerId, e.getMessage());
+		        throw new RuntimeException("Error getting ticket counts by status", e);
+		    }
+		}
+
+		public double getAverageResponseTimeByRepId(Long repId) {
+		    logger.info("Getting average response time by representative ID: {}", repId);
+		    try {
+		        Optional<Double> result = ticketRepo.findAverageResponseTimeByRepId(repId);
+		        double average = result.orElse(0.0);
+		        logger.info("Average response time by representative ID: {} is {}", repId, average);
+		        return average;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error getting average response time by representative ID {}: {}", repId, e.getMessage());
+		        throw new RuntimeException("Error getting average response time by representative ID", e);
+		    }
+		}
+
+		public double getAverageResolutionTimeByRepId(Long repId) {
+		    logger.info("Getting average resolution time by representative ID: {}", repId);
+		    try {
+		        Optional<Double> result = ticketRepo.findAverageResolutionTimeByRepId(repId);
+		        double average = result.orElse(0.0);
+		        logger.info("Average resolution time by representative ID: {} is {}", repId, average);
+		        return average;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error getting average resolution time by representative ID {}: {}", repId, e.getMessage());
+		        throw new RuntimeException("Error getting average resolution time by representative ID", e);
+		    }
+		}
+
+		public List<Ticket> getTicketsByRepId(Long repId) {
+		    logger.info("Getting tickets by representative ID: {}", repId);
+		    try {
+		        List<Ticket> tickets = ticketRepo.findByEmpId(repId);
+		        logger.info("Successfully fetched {} tickets for representative ID: {}", tickets.size(), repId);
+		        return tickets;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error getting tickets by representative ID {}: {}", repId, e.getMessage());
+		        throw new RuntimeException("Error getting tickets by representative ID", e);
+		    }
+		}
+
+		public Map<String, Long> getTicketCountsByStatusForRep(Long repId) {
+		    logger.info("Getting ticket counts by status for representative ID: {}", repId);
+		    try {
+		        List<Object[]> results = ticketRepo.countTicketsByStatusForRep(repId);
+		        Map<String, Long> ticketCounts = new HashMap<>();
+		        
+		        for (Object[] result : results) {
+		            String status = (String) result[0];
+		            Long count = (Long) result[1];
+		            ticketCounts.put(status, count);
+		        }
+		        
+		        logger.info("Ticket counts by status for representative ID: {}: {}", repId, ticketCounts);
+		        return ticketCounts;
+		    } catch (Exception e) {
+		        // Log only the error message, excluding the stack trace
+		        logger.error("Error getting ticket counts by status for representative ID {}: {}", repId, e.getMessage());
+		        throw new RuntimeException("Error getting ticket counts by status for representative ID", e);
+		    }
+		}
+
+		public long getTicketCount(Long repId) {
+		    logger.info("Getting ticket count for representative ID: {}", repId);
+		    try {
+		        Long count = ticketRepo.getCountByRepId(repId);
+		        logger.info("Ticket count for representative ID: {} is {}", repId, count);
+		        return count;
+		    } catch (Exception e) {
+		        
+		        logger.error("Error getting ticket count for representative ID {}: {}", repId, e.getMessage());
+		        throw new RuntimeException("Error getting ticket count for representative ID", e);
+		    }
+		}
+
+    
+    public Map<String, Float> getAverageResponseTimeByDayOfWeek(Long repId, LocalDate currentDate) {
+        logger.info("Getting average response time by day of week for representative ID: {} on date: {}", repId, currentDate);
+        try {
+            LocalDateTime startDate = currentDate.atStartOfDay().minusDays(7);
+            List<Object[]> results = ticketRepo.findResponseTimesForRep(repId, startDate);
+            
+            Map<LocalDate, List<Float>> responseTimesByDay = new HashMap<>();
+            for (Object[] result : results) {
+                LocalDate createdAt = ((LocalDateTime) result[0]).toLocalDate();
+                float responseTime = ((Number) result[1]).floatValue();
+                
+                float responseTimeInMinutes = responseTime / 60.0f;
+
+                responseTimesByDay
+                    .computeIfAbsent(createdAt, k -> new ArrayList<>())
+                    .add(responseTimeInMinutes);
+            }
+            
+            logger.debug("Response times by day: {}", responseTimesByDay);
+
+            Map<LocalDate, Float> avgResponseTimesByDate = responseTimesByDay.entrySet().stream()
+                .collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    entry -> (float) entry.getValue().stream().mapToDouble(Float::floatValue).average().orElse(0.0)
+                ));
+            
+            logger.debug("Average response times by date: {}", avgResponseTimesByDate);
+
+            Map<LocalDate, Float> sortedAvgResponseTimesByDate = avgResponseTimesByDate.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    (e1, e2) -> e1,
+                    LinkedHashMap::new
+                ));
+            
+            logger.debug("Sorted average response times by date: {}", sortedAvgResponseTimesByDate);
+
+            Map<String, Float> avgResponseTimesByDayOfWeek = new LinkedHashMap<>();
+            for (Map.Entry<LocalDate, Float> entry : sortedAvgResponseTimesByDate.entrySet()) {
+                avgResponseTimesByDayOfWeek.put(entry.getKey().getDayOfWeek().name(), entry.getValue());
+            }
+
+            logger.info("Average response times by day of week for representative ID: {}: {}", repId, avgResponseTimesByDayOfWeek);
+
+            return avgResponseTimesByDayOfWeek;
+        } catch (Exception e) {
+            //logger.error("Error getting average response time by day of week for representative ID: {}", repId, e);
+            throw new RuntimeException("Error getting average response time by day of week for representative", e);
+        }
+    }
+    
+  
+    public Map<String, Float> getAverageResolutionTimeByDayOfWeek(Long repId, LocalDate currentDate) {
+        logger.info("Getting average resolution time by day of week for representative ID: {} on date: {}", repId, currentDate);
+        try {
+            LocalDateTime startDate = currentDate.atStartOfDay().minusDays(7);
+            List<Object[]> results = ticketRepo.findResolutionTimesForRep(repId, startDate);
+
+            Map<LocalDate, List<Float>> resolutionTimesByDay = new HashMap<>();
+            for (Object[] result : results) {
+                LocalDate createdAt = ((LocalDateTime) result[0]).toLocalDate();
+                float resolutionTime = ((Number) result[1]).floatValue();
+
+                resolutionTimesByDay
+                    .computeIfAbsent(createdAt, k -> new ArrayList<>())
+                    .add(resolutionTime);
+            }
+            
+            logger.debug("Resolution times by day: {}", resolutionTimesByDay);
+
+            Map<LocalDate, Float> avgResolutionTimesByDate = resolutionTimesByDay.entrySet().stream()
+                .collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    entry -> (float) entry.getValue().stream().mapToDouble(Float::floatValue).average().orElse(0.0)
+                ));
+            
+            logger.debug("Average resolution times by date: {}", avgResolutionTimesByDate);
+
+            Map<LocalDate, Float> sortedAvgResolutionTimesByDate = avgResolutionTimesByDate.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    (e1, e2) -> e1,
+                    LinkedHashMap::new
+                ));
+            
+            logger.debug("Sorted average resolution times by date: {}", sortedAvgResolutionTimesByDate);
+
+            Map<String, Float> avgResolutionTimesByDayOfWeek = new LinkedHashMap<>();
+            for (Map.Entry<LocalDate, Float> entry : sortedAvgResolutionTimesByDate.entrySet()) {
+                avgResolutionTimesByDayOfWeek.put(entry.getKey().getDayOfWeek().name(), entry.getValue());
+            }
+
+            logger.info("Average resolution times by day of week for representative ID: {}: {}", repId, avgResolutionTimesByDayOfWeek);
+
+            return avgResolutionTimesByDayOfWeek;
+        } catch (Exception e) {
+            //logger.error("Error getting average resolution time by day of week for representative ID: {}", repId, e);
+            throw new RuntimeException("Error getting average resolution time by day of week for representative", e);
+        }
+    }
+
+  
+
 		
 		//phani
 		
