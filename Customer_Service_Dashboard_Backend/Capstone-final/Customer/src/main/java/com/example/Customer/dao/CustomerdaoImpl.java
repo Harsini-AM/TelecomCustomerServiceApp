@@ -99,7 +99,7 @@ public class CustomerdaoImpl{
                 LoginResponse loginResponse = new LoginResponse(foundCustomer.getId(), foundCustomer.getUserName(), "Login Successful", "customer");
                 return ResponseEntity.ok(loginResponse);
             } else {
-                throw new CustomerNotFoundException("Username doesn't exist. Create an account.");
+                throw new CustomerNotFoundException("Username doesn't exist. Create an account to proceed.");
             }
         } catch (CustomerNotFoundException ex) {
             throw ex;
